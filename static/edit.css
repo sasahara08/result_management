@@ -1,0 +1,31 @@
+main {
+    width: 60%;
+    margin: auto;
+}
+
+form {
+    padding: 80px;
+}
+
+span {
+    white-space: nowrap;
+}
+
+input {
+    text-align: center;
+}
+
+.form_box {
+    display: flex;
+    align-items: center;
+}
+
+.edit_font{
+    font-size: large;
+    width: 250px;
+}
+
+.label_width {
+    width: 70%;
+    margin: auto;
+}

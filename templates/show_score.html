@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/show.css">
+    <title>成績入力</title>
+</head>
+
+<body>
+    <header>
+        <div class="title_line">
+            <h1>
+                成績管理ツール
+            </h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="avg_score">
+            <canvas id="myChart"></canvas>  <!-- チャート、jsの処理はhtmlのタグ下に記載 -->
+            <div class="avg_socore_list">
+                <div class="curriculum">
+                    <span>HTML:</span>
+                    <span>{{avg_score[2]}}</span>
+                </div>
+                <div class="curriculum">
+                    <span>CSS:</span>
+                    <span>{{avg_score[3]}}</span>
+                </div>
+                <div class="curriculum">
+                    <span>javascript:</span>
+                    <span>{{avg_score[4]}}</span>
+                </div>
+                <div class="curriculum">
+                    <span>Python:</span>
+                    <span>{{avg_score[5]}}</span>
+                </div>
+                <div class="curriculum">
+                    <span>Java:</span>
+                    <span>{{avg_score[6]}}</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="test_scores">
+            {{% for score in scores %}}
+            <h3>{{テストの名前を入れる}}</h3>
+            <div class="score_list">
+                <div class="curriculum">
+                    <span  class="curriculum_item">HTML:</span>
+                    <span>{{score[2]}}</span>
+                </div>
+                <div class="curriculum">
+                    <span  class="curriculum_item">CSS:</span>
+                    <span>{{score[3]}}</span>
+                </div>
+                <div class="curriculum">
+                    <span class="curriculum_item">javascript:</span>
+                    <span>{{score[4]}}</span>
+                </div>
+                <div class="curriculum">
+                    <span>Python:</span>
+                    <span>{{score[5]}}</span>
+                </div>
+                <div class="curriculum">
+                    <span  class="curriculum_item">Java:</span>
+                    <span>{{score[6]}}</span>
+                </div>
+            </div>
+            {{% endfor %}}
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script>
+
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        //グラフの種類
+        type: 'radar',
+        //データの設定
+        data: {
+            //データ項目のラベル
+            labels: ["HTML", "CSS", "Js", "Python", "Java"],
+            //データセット
+            datasets: [{
+                label: "〇〇分析",
+                //背景色
+                backgroundColor: "rgba(51,255,51,0.5)",
+                //枠線の色
+                borderColor: "rgba(51,255,51,1)",
+                //結合点の背景色
+                pointBackgroundColor: "rgba(51,255,51,1)",
+                //結合点の枠線の色
+                pointBorderColor: "#fff",
+                //結合点の背景色（ホバ時）
+                pointHoverBackgroundColor: "#fff",
+                //結合点の枠線の色（ホバー時）
+                pointHoverBorderColor: "rgba(51,255,51,1)",
+                //結合点より外でマウスホバーを認識する範囲（ピクセル単位）
+                hitRadius: 5,
+                //グラフのデータ
+                data: [50, 40, 80, 60, 2]
+            }]
+        },
+        //オプションの設定
+        options: {
+            // レスポンシブ指定
+            responsive: false,
+            maintainAspectRatio: false,
+            scale: {
+                ticks: {
+                    // 最小値の値を0指定
+                    beginAtZero: true,
+                    min: 0,
+                    stepSize: 20,
+                    // 最大値を指定
+                    max: 100,
+                },
+                pointLabels: {
+                    fontSize: 15
+                }
+            },
+            //ラベル非表示
+            legend: {
+                // display: false
+                fontSize: 20,
+                labels: {
+                    // このフォント設定はグローバルプロパティを上書きします。
+                    fontSize: 20,
+                }
+            }
+
+        }
+    });
+
+</script>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/edit.css">
+    <title>成績入力</title>
+</head>
+
+<body>
+    <header>
+        <div>
+            <h1>
+                成績管理ツール
+            </h1>
+        </div>
+    </header>
+
+    <main>
+        <h2>
+            成績入力
+        </h2>
+
+        <div hidden>
+
+        </div>
+        <h3>生徒名：{{student_name}}</h3>
+        <form action="/create_score" method="post">
+            <input type="hidden" name="student_id" value=1>
+            <input type="hidden" name="test_id" value={{select_test[1]}}>
+            <div>
+                <label for="tests">{{test_name[1]}}</label>
+            </div>
+
+            <div class="form_box">
+                <label class="form-label edit_font" for="html_score">HTML : </label>
+                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required value={{select_test[2]}} name="html_score" id="html_score">
+                <span>点</span>
+            </div>
+
+            <div class="form_box">
+                <label class="form-label edit_font" for="css_score">CSS : </label><br>
+                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required value={{select_test[3]}} name="css_score" id="css_score">
+                <span>点</span>
+            </div>
+
+            <div class="form_box">
+                <label class="form-label edit_font" for="js_score">javascript : </label><br>
+                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required value={{select_test[4]}} name="js_score" id="js_score">
+                <span>点</span>
+            </div>
+
+            <div class="form_box">
+                <label class="form -label edit_font"for="python_score">Python : </label><br>
+                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required value={{select_test[5]}} name="python_score" id="python_score">
+                <span>点</span>
+            </div>
+
+            <div class="form_box">
+                <label class="form-label edit_font" for="java_score">Java : </label><br>
+                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required value={{select_test[6]}} name="java_score" id="java_score">
+                <span>点</span>
+            </div>
+
+            <input type="submit" value="入力完了">
+
+        </form>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

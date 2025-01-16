@@ -1,0 +1,38 @@
+body {
+    width: 80%;
+    margin: auto;
+}
+
+header {
+    margin: 50px 0px;
+    padding: 10px;
+    border: 1px solid #c5c5c5;
+}
+
+.avg_score {
+    position: relative;
+    left: -10%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+#myChart {
+    width: 100%;
+}
+
+.score_list {
+    background-color: #c2c2c27c;
+}
+
+.curriculm {
+    display: flex;
+    align-items: center;
+}
+
+
+.curriculum span {
+    width: 200px;
+    display: inline-block;
+    margin: 5px 0px;
+}

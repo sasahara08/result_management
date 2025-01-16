@@ -1,0 +1,74 @@
+/* Home ボタンデザイン */
+a.btn_02 {
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	width: 100px;
+	margin: auto;
+	padding: 1rem 4rem;
+	font-weight: bold;
+	border: 2px solid #00fa9a;
+	background: #00fa9a;
+	color: #fff;
+	transition: 0.5s;
+}
+a.btn_02:hover {
+	color: #00fa9a;
+	background: #fff;
+}
+
+
+/* Homeボタン位置 */
+.homebtn {  
+	float: right;
+    width: 30%;
+	display: flex;
+    justify-content: space-around;
+	margin: auto;
+}
+
+/* Home 学生名リスト */
+ul.cp_list {
+	position: relative;
+	padding: 5px;
+	border: solid 1px #AB47BC;
+	list-style-type: none;
+	width: 75%;
+  }
+  ul.cp_list li {
+	display: flex;
+	padding: 5px 10px 5px 20px;
+	border-bottom: 1px dashed #AB47BC;
+  }
+  ul.cp_list li::before {
+	position: absolute;
+	left : 5px;
+	content: "
+  ul.cp_list {
+  position: relative;
+  padding: 5px;
+  border: solid 1px #AB47BC;
+  list-style-type: none;
+  }
+  ul.cp_list li {
+  display: flex;
+  padding: 5px 10px 5px 20px;
+  border-bottom: 1px dashed #AB47BC;
+  }
+  ul.cp_list li::before {
+  position: absolute;
+  left : 5px;
+  content: "\002713";
+  font-weight: bold;
+  color: #AB47BC;
+  }
+  ul.cp_list li:last-of-type {
+  border-bottom: none;
+  }
+  2713";
+	font-weight: bold;
+	color: #AB47BC;
+  }
+  ul.cp_list li:last-of-type {
+	border-bottom: none;
+  }
