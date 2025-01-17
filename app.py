@@ -17,13 +17,20 @@ def get_db():
     cursor = connection.cursor()
     return cursor
 
-def get_test_number():
-    connection = sqlite3.connect('result.db')
-    cursor = connection.cursor()
-    cursor.execute('select * from test_number ')
-    tests = cursor.fetchall()
+def get_test_number(id):
+    if id == "":
+        connection = sqlite3.connect('result.db')
+        cursor = connection.cursor()
+        cursor.execute('select * from test_number ')
+        tests = cursor.fetchall()
+        connection.close()
+    else:
+        connection = sqlite3.connect('result.db')
+        cursor = connection.cursor()
+        cursor.execute('select t.test_id, t.name from score as s join test_number as t on s.test_id = t.test_id where s.student_id = ? order by t.test_id asc',(id,))
+        tests = cursor.fetchall()  #特定の生徒のテストの回ごとの点数を取得
+        connection.close()
     connection.close()
-
     return tests
 
 @app.route("/")
@@ -67,7 +74,7 @@ def indexAccess():
 
     return render_template('index.html', student_list = student_list)
 
-# 生徒の成績を確認
+# 生徒の成績を確認(レーダーチャートページへ遷移)
 @app.route("/show/<id>")
 def show_list(id):
     # student_id = int(request.form.get('student_id'))
@@ -79,7 +86,7 @@ def show_list(id):
 
     cursor.execute('select student_id, AVG(html_score), AVG(css_score), AVG(js_score), AVG(python_score), AVG(java_score) from score group by (?)',(id,))
     avg_score = cursor.fetchone()  #選択した生徒の全教科平均点を取得
-    print(avg_score)
+    # print(avg_score)
 
     cursor.execute('select t.name, s.test_id, s.html_score, s.css_score, s.js_score, s.python_score, s.java_score from score as s join test_number as t on s.test_id = t.test_id where s.student_id = ? order by t.test_id asc',(id,))
     tests_score = cursor.fetchall()  #選択した生徒のテストの回ごとの点数を取得
@@ -88,17 +95,40 @@ def show_list(id):
     return render_template('show_score.html', student_name = student_name, avg_score = avg_score, tests_score = tests_score)
 
 
-# 成績入力画面に遷移時実行(テストの回を選択する為にテスト回を取得)
-@app.route("/regist")
-def score_register():
-    tests = get_test_number()
-    
-    return render_template('score_regist.html', tests = tests)
+# 過去のテスト一覧を表示して、編集したいテストを表示する
+@app.route("/select_test/<id>")
+def select_tests(id):
+    connection = sqlite3.connect('result.db')
+    cursor = connection.cursor()
+    cursor.execute('select * from student where student_id = ?',(id,))
+    student_name = cursor.fetchone()  #生徒名を取得
+    connection.close()
+    tests = get_test_number(id)  #選択した生徒のテストの一覧を取得
+    id = id
 
-# 成績入力確定後に実行
-@app.route("/create_score", methods=['POST', 'GET'])
-def regist_score():
-    student_id = int(request.form.get('student_id'))
+    return render_template('select_score.html', tests = tests, student_name = student_name, id = id)
+
+
+# 成績入力画面に遷移
+@app.route("/regist/<id>")
+def score_register(id):
+
+    connection = sqlite3.connect('result.db')
+    cursor = connection.cursor()
+    cursor.execute('select * from student where student_id = ?',(id,))
+    student_name = cursor.fetchone()  #生徒名を取得
+    connection.close()
+
+    tests = get_test_number(id) #idの値がidの生徒のテスト回一覧を取得
+    id = id
+    
+    return render_template('score_regist.html', student_name = student_name, tests = tests, id = id)
+
+
+# 成績入力確定ボタン
+@app.route("/create_score/<id>", methods=['POST', 'GET'])
+def regist_score(id):
+    student_id = id
     test_id = int(request.form.get('test_id'))
     html = int(request.form.get('html_score'))
     css = int(request.form.get('css_score'))
@@ -117,24 +147,14 @@ def regist_score():
     
     return redirect('/')
 
-# 過去のテスト一覧を表示して、編集したいテストを表示する
-@app.route("/select_test/<id>")
-def select_tests(id):
-    connection = sqlite3.connect('result.db')
-    cursor = connection.cursor()
-    cursor.execute('select * from student where student_id = ?',(id,))
-    student_name = cursor.fetchone()  #生徒名を取得
-    connection.close()
 
-    return render_template('select_score.html', tests = tests)
-
-
-@app.route("/editer")
+# 成績の編集画面へ遷移
+@app.route("/editer/<student_id>/<test_id>")
 def score_editer():
-    student_id = int(request.form.get('student_id'))
-    test_id = int(request.form.get('test_id'))
+    student_id = student_id
+    test_id = test_id
 
-    selectTest = select_test(student_id, test_id)
+    selectTest = select_test(student_id, test_id)  #特定のidの生徒の特定のidのテストを取得
     
     # 取得したテストの名前を取得
     cor = get_db()
@@ -142,7 +162,5 @@ def score_editer():
     test_name = cor.fetchone()
     
     return render_template('score_editer.html', select_test = selectTest, test_name = test_name)
-    
-
 
 app.run()

@@ -28,8 +28,7 @@
 
         </div>
         <h3>生徒名：{{student_name}}</h3>
-        <form action="/create_score" method="post">
-            <input type="hidden" name="student_id" value=1>
+        <form action="/create_score/{{id}}" method="post">
             <div>
                 <label for="tests"></label>
                 <select class="form-select form-select-lg mb-5" name="test_id" id="tests">
