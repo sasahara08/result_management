@@ -9,6 +9,14 @@ header {
     border: 1px solid #c5c5c5;
 }
 
+.name_label {
+    display: flex;
+}
+
+.name_label h2 {
+    margin-left: 30px;
+}
+
 .avg_score {
     position: relative;
     left: -10%;

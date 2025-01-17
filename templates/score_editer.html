@@ -30,7 +30,7 @@
         <h3>生徒名：{{student_name}}</h3>
         <form action="/create_score" method="post">
             <input type="hidden" name="student_id" value=1>
-            <input type="hidden" name="test_id" value={{select_test[1]}}>
+            <input type="hidden" name="test_id" value={{select_test[1]}}>  <!-- テスト名 -->
             <div>
                 <label for="tests">{{test_name[1]}}</label>
             </div>

@@ -17,6 +17,15 @@ def get_db():
     cursor = connection.cursor()
     return cursor
 
+def get_test_number():
+    connection = sqlite3.connect('result.db')
+    cursor = connection.cursor()
+    cursor.execute('select * from test_number ')
+    tests = cursor.fetchall()
+    connection.close()
+
+    return tests
+
 @app.route("/")
 def indexAccess():
     
@@ -58,18 +67,32 @@ def indexAccess():
 
     return render_template('index.html', student_list = student_list)
 
-@app.route("/show")
-def show_list():
-    
-# 成績入力画面に遷移時実行
-@app.route("/regist")
-def score_register():
+# 生徒の成績を確認
+@app.route("/show/<id>")
+def show_list(id):
+    # student_id = int(request.form.get('student_id'))
+
     connection = sqlite3.connect('result.db')
     cursor = connection.cursor()
-    cursor.execute('select * from test_number order by test_id asc')
-    tests = cursor.fetchall()
-    connection.close()
+    cursor.execute('select * from student where student_id = ?',(id,))
+    student_name = cursor.fetchone()  #生徒名を取得
 
+    cursor.execute('select student_id, AVG(html_score), AVG(css_score), AVG(js_score), AVG(python_score), AVG(java_score) from score group by (?)',(id,))
+    avg_score = cursor.fetchone()  #選択した生徒の全教科平均点を取得
+    print(avg_score)
+
+    cursor.execute('select t.name, s.test_id, s.html_score, s.css_score, s.js_score, s.python_score, s.java_score from score as s join test_number as t on s.test_id = t.test_id where s.student_id = ? order by t.test_id asc',(id,))
+    tests_score = cursor.fetchall()  #選択した生徒のテストの回ごとの点数を取得
+
+    connection.close()
+    return render_template('show_score.html', student_name = student_name, avg_score = avg_score, tests_score = tests_score)
+
+
+# 成績入力画面に遷移時実行(テストの回を選択する為にテスト回を取得)
+@app.route("/regist")
+def score_register():
+    tests = get_test_number()
+    
     return render_template('score_regist.html', tests = tests)
 
 # 成績入力確定後に実行
@@ -93,6 +116,18 @@ def regist_score():
     connection.close()
     
     return redirect('/')
+
+# 過去のテスト一覧を表示して、編集したいテストを表示する
+@app.route("/select_test/<id>")
+def select_tests(id):
+    connection = sqlite3.connect('result.db')
+    cursor = connection.cursor()
+    cursor.execute('select * from student where student_id = ?',(id,))
+    student_name = cursor.fetchone()  #生徒名を取得
+    connection.close()
+
+    return render_template('select_score.html', tests = tests)
+
 
 @app.route("/editer")
 def score_editer():

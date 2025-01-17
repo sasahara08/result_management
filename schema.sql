@@ -24,3 +24,10 @@ create table IF NOT exists curriculum (
   `curriculum_id` integer not null Primary key,
   `name` integer not null
 );
+
+
+select t.name, s.test_id, s.html_score, s.css_score, s.js_score, s.python_score, s.java_score
+from score as s
+join test_number as t
+on s.test_id = t.test_id
+order by t.test_id asc;
