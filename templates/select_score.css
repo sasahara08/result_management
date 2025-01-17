@@ -1,0 +1,46 @@
+/* フォーム全体を中央揃えに設定 */
+.center-form { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+} 
+
+.form-row { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-bottom: 20px; 
+    /* 各行の下に20pxのマージンを追加 */ 
+}
+
+.form-label { 
+    flex: 0 0 auto; /* ラベルの幅を固定にし、自動的にサイズ調整しません */ 
+    text-align: center;
+}
+
+label { 
+    text-align: center; /* ラベル自体のテキストを中央揃えにします */ 
+    display: block; /* ラベル全体をブロック要素にすると上下に余白ができやすいです */ 
+} 
+
+input[type="text"] { 
+    text-align: left; /* テキスト入力は左揃えにします */ 
+}
+
+/* ボタンのスタイル */ 
+button { 
+    margin-right: 40px;
+    margin-left: 10px;
+    margin: 10px 0; 
+    padding: 5px 10px; 
+    border: none; 
+    background-color: #166ab5; 
+    color: #fff; 
+    border-radius: 3px; 
+    cursor: pointer; 
+} 
+
+button:hover { 
+    background-color: #145a91; 
+}
