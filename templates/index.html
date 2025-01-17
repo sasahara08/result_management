@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>成績管理ツール</title>
-        <link rel="stylesheet" type="text/css" href="./Style.css">
+        <link rel="stylesheet" type="text/css" href="../static/Style_ozawa.css">
 </head>
 <body>
     <header>
@@ -19,25 +19,17 @@
     <br>
     <br>
     
-
-        <ul class="cp_list">
-            <li>あいうえお 
-                <div class="listbtn_01">
-                <button type=“button” onclick="location.href='★'">成績閲覧</button>
-                <button type=“button” onclick="location.href='★'">成績編集</button>  
-                </div>  
-            </li>           
-
-            
-            <li>かきくけこ</li>
-            <li>さしすせそ</li>
-            <li>たちつてと</li>
-        </ul>
-
-    
-    
-    
-
+    <ul class="cp_list">
+        {% for test in tests %}
+        <li>
+        <option value="{{student[0]}}">{{student[1]}}</option> 
+        <div class="listbtn_01">
+        <button type=“button” onclick="location.href='★'">成績閲覧</button>
+        <button type=“button” onclick="location.href='★'">成績編集</button>  
+        </div>  
+        </li>  
+        {% endfor %}
+    </ul>
     
 </body>
 </html>
