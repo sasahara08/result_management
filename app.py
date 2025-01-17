@@ -6,9 +6,12 @@ app = Flask(__name__)
 def select_test(student_id, test_id):
     connection = sqlite3.connect('result.db')
     cursor = connection.cursor()
-
-    cursor.execute('select * from score where test_id = test_id and student_id = student_id')
+    print(student_id)
+    print(test_id)
+    cursor.execute('select * from score where test_id = ? and student_id = ?',(test_id, student_id))
+    # select * from score where test_id = 2 and student_id = 1
     select_test = cursor.fetchone()
+    print(select_test)
     connection.close()
     return select_test
 
@@ -150,17 +153,28 @@ def regist_score(id):
 
 # 成績の編集画面へ遷移
 @app.route("/editer/<student_id>/<test_id>")
-def score_editer():
+def score_editer(student_id, test_id):
     student_id = student_id
     test_id = test_id
+    # print(student_id)
+    # print(test_id)
 
     selectTest = select_test(student_id, test_id)  #特定のidの生徒の特定のidのテストを取得
     
     # 取得したテストの名前を取得
-    cor = get_db()
-    cor.execute('select * from test_number where test_id = test_id')
-    test_name = cor.fetchone()
+    connection = sqlite3.connect('result.db')
+    cursor = connection.cursor()
+    cursor.execute('select * from test_number where test_id = ?',(test_id,))
+    test_name = cursor.fetchone()  #test_idのテストを取得
+    connection.close()
+
+    #生徒名を取得
+    connection = sqlite3.connect('result.db')
+    cursor = connection.cursor()
+    cursor.execute('select * from student where student_id = ?',(student_id,))
+    student_name = cursor.fetchone()  #生徒名を取得
+    connection.close()
     
-    return render_template('score_editer.html', select_test = selectTest, test_name = test_name)
+    return render_template('score_editer.html', select_test = selectTest, test_name = test_name, student_name = student_name, id = student_id)
 
 app.run()

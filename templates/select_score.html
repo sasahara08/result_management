@@ -16,17 +16,17 @@
         <br>
         <h2>今までの成績</h2>
         <div class="line"></div>
-        <form action="your-server-side-script.php" method="POST">
+        <!-- <form action="/editer/{{id}}/{{tests[0]}}" method="POST"> -->
             {% for test in tests %}
             <div class="form-row">
                 <div class="form-label">
-                    <label for="test1">2024年　第1回　テスト</label>
+                    <label for="test1">{{test[1]}}</label>
                 </div>
-                <button type="submit">編集</button>
+                <button type=“button” onclick="location.href='/editer/{{id}}/{{test[0]}}'">編集</button>
             </div>
             {% endfor %}
 
-        </form>
+        <!-- </form> -->
     </div>
 </body>
 
