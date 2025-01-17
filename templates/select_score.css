@@ -1,4 +1,3 @@
-/* フォーム全体を中央揃えに設定 */
 .center-form { 
     display: flex; 
     flex-direction: column;
@@ -10,29 +9,25 @@
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    margin-bottom: 20px; 
-    /* 各行の下に20pxのマージンを追加 */ 
+    margin-bottom: 20px;
 }
 
 .form-label { 
-    flex: 0 0 auto; /* ラベルの幅を固定にし、自動的にサイズ調整しません */ 
+    flex: 0 0 auto; 
     text-align: center;
 }
 
 label { 
-    text-align: center; /* ラベル自体のテキストを中央揃えにします */ 
-    display: block; /* ラベル全体をブロック要素にすると上下に余白ができやすいです */ 
+    text-align: center;
+    display: block;
 } 
 
 input[type="text"] { 
-    text-align: left; /* テキスト入力は左揃えにします */ 
+    text-align: left;
 }
-
-/* ボタンのスタイル */ 
-button { 
-    margin-right: 40px;
-    margin-left: 10px;
-    margin: 10px 0; 
+ 
+button {
+    margin-left: 50px; 
     padding: 5px 10px; 
     border: none; 
     background-color: #166ab5; 
@@ -41,13 +36,26 @@ button {
     cursor: pointer; 
 } 
 
+.new-addition { 
+    align-items: center; 
+    background-color: #166ab5; 
+    color: #fff; 
+    border-radius: 3px; 
+    cursor: pointer; 
+} 
+
 button:hover { 
-    background-color: #145a91; 
+    background-color: #145a91;
+    transform: scale(1.1); 
 }
 
 h2 { 
-    border-bottom: 2px solid #000; 
-    /* アンダーラインを設定 */ 
-    padding-bottom: 10px; 
-    /* アンダーラインとテキストの間に余白を追加 */ 
+    display: inline-block;
+}
+
+.line {
+    margin: auto;
+    margin-bottom: 30px;
+    width: 40%;
+    border-bottom: solid 2px #000;
 }

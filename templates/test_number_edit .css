@@ -1,20 +1,17 @@
-/* フォーム全体を中央揃えに設定 */
 .center-form { 
     display: flex; 
     flex-direction: column; 
     align-items: center; 
     justify-content: center; 
 } 
-
-/* .form-row内の要素を中央揃えに設定 */ 
+ 
 .form-row { 
     display: flex; 
     align-items: center; 
     justify-content: center; 
-    gap: 10px; /* 間隔を適宜調整 */ 
+    margin-bottom: 10px;
 } 
-
-/* ボタンのスタイル */ 
+ 
 button { 
     margin-left: 10px; 
     padding: 5px 10px; 
@@ -28,12 +25,14 @@ button {
 button:hover { 
     background-color: #145a91; 
 }
-
-/* flexboxを利用して要素を縦に並べる */ 
+ 
 div { 
     display: flex; 
     flex-direction: column; 
     align-items: center; 
-    gap: 10px; 
-    /* 間隔を調整 */ 
+    gap: 10px;
+}
+
+input[type="text"] { 
+    margin-right: 10px;
 }
