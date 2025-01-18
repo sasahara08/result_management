@@ -1,0 +1,6 @@
+studentテーブルとtest_numberテーブルの主キーにauto_incrementを振り忘れています。
+auto_increment無しの状態でユーザー名を追加してもidを振っていなのでエラーが出ます。
+
+エラーなくして生徒名を追加したいときは主キーにauto_incrementを振って再度テーブルを作り直してください。
+
+
