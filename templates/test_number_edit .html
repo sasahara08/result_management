@@ -18,7 +18,7 @@
             </div>
         </form>
         {% for test in tests %}
-        <div class="form-row">
+        <div class="form-row" id="edit_start">
             <span>{{test[1]}}</span>
             <button class="edit-btn" id="modal_open">編集</button>
             <button class="delete-btn" onclick="location.href='/delete_test/{{test[0]}}'">削除</button>
@@ -33,7 +33,7 @@
                 <span class="modal_close" onclick="closeModal()">&times;</span>
             </div>
             <div class="modal_body">
-                <input type="text" value="{{test[1]}}" name="test_name" id="modal_name">
+                <input type="text" name="modal_name" id="modal_name">
                 <button class="edit-btn button" onclick="location.href='/edit_test/{{test[0]}}'">編集完了</button>
             </div>
         </div>
@@ -43,6 +43,7 @@
         const btn_open = document.getElementById("modal_open");
         const btn_close = document.querySelector(".modal_close");
         const modal = document.getElementById("modal")
+        
 
         btn_open.addEventListener("click", () => {
             modal.style.display = "block";
