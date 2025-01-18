@@ -97,8 +97,47 @@ def show_list(id):
     connection.close()
     return render_template('show_score.html', student_name = student_name, avg_score = avg_score, tests_score = tests_score)
 
+# テストの回を一覧表示
+@app.route("/create_test")
+def create_test_number():
+    connection = sqlite3.connect('result.db')
+    cursor = connection.cursor()
+    cursor.execute('select * from test_number')
+    tests = cursor.fetchall() 
+    connection.close()
 
-# 過去のテスト一覧を表示して、編集したいテストを表示する
+    return render_template('stest_number.html', tests = tests)
+
+
+# テストの回追加
+@app.route("/add_test")
+def add_test_number():
+    test = request.form.get('test_name')
+
+    connection = sqlite3.connect('result.db')
+    cursor = connection.cursor()
+    cursor.execute('''
+    insert into test_number (name) values (?)''',(test,))
+    connection.commit()
+    connection.close()
+
+    return redirect('/create_test')
+
+# テストの回編集
+@app.route("/edit_test/<id>")
+def edit_test_number(id):
+    test = request.form.get('test_name')
+
+    connection = sqlite3.connect('result.db')
+    cursor = connection.cursor()
+    cursor.execute('''
+    insert into test_number (name) values (?)''',(test,))
+    connection.commit()
+    connection.close()
+
+    return redirect('/create_test')
+
+# 過去の過去のテスト一覧を表示
 @app.route("/select_test/<id>")
 def select_tests(id):
     connection = sqlite3.connect('result.db')

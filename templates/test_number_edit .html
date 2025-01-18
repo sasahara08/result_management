@@ -1,23 +1,63 @@
-<!DOCTYPE html> 
-<html lang="ja"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="../static/test_number_edit.css"> 
-    <title>テストの実施回の編集</title> 
-</head> 
-<body> 
-    <div style="text-align: center;"> 
-        <h1>テストの実施回の編集</h1> 
-        <div class="form-row"> 
-            <input type="text" name="name1" id="name1">  
-            <button class="add-btn" onclick="location.href='URL'">新しいテストを追加する</button> 
-        </div> 
-        <div class="form-row"> 
-            <input type="text" name="name2" id="name2"> 
-            <button class="edit-btn" onclick="location.href='URL'">編集</button> 
-            <button class="delete-btn" onclick="location.href='URL'">削除</button> 
-        </div> 
-    </div> 
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/test_number_edit .css">
+    <title>テストの実施回の編集</title>
+</head>
+
+<body>
+    <div style="text-align: center;">
+        <h1>テストの実施回の編集</h1>
+        <form action="/add_test">
+            <div class="form-rows">
+                <input type="text" name="test_name" id="test_name" placeholder="追加したいテスト名を追加">
+                <button class="add-btn" onclick="location.href='URL'">テストを追加</button>
+            </div>
+        </form>
+        {% for test in tests %}
+        <div class="form-row">
+            <span>{{test[1]}}</span>
+            <button class="edit-btn" id="modal_open">編集</button>
+            <button class="delete-btn" onclick="location.href='/delete_test/{{test[0]}}'">削除</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal_content">
+            <div class="modal_header">
+                <h2>テスト回を編集</h2>
+                <span class="modal_close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal_body">
+                <input type="text" value="{{test[1]}}" name="test_name" id="modal_name">
+                <button class="edit-btn button" onclick="location.href='/edit_test/{{test[0]}}'">編集完了</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btn_open = document.getElementById("modal_open");
+        const btn_close = document.querySelector(".modal_close");
+        const modal = document.getElementById("modal")
+
+        btn_open.addEventListener("click", () => {
+            modal.style.display = "block";
+        });
+
+        btn_close.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        document.addEventListener("click", (e) => {
+            if (e.target == modal){
+                modal.style.display = "none";
+            }
+        })
+    </script>
 </body>
+
 </html>
