@@ -11,22 +11,22 @@
 <body>
     <div style="text-align: center;">
         <h1>テストの実施回の編集</h1>
-        <form action="/add_test">
+        <form action="/add_test" method="post">
             <div class="form-rows">
                 <input type="text" name="test_name" id="test_name" placeholder="追加したいテスト名を追加">
-                <button class="add-btn" onclick="location.href='URL'">テストを追加</button>
+                <button class="add-btn" type="submit">テストを追加</button>
             </div>
         </form>
         {% for test in tests %}
         <div class="form-row" id="edit_start">
             <span>{{test[1]}}</span>
-            <button class="edit-btn" id="modal_open">編集</button>
+            <button class="edit-btn" id="modal_open" onclick="edit_test({{test[0]}}, '{{test[1]}}')">編集</button>
             <button class="delete-btn" onclick="location.href='/delete_test/{{test[0]}}'">削除</button>
         </div>
         {% endfor %}
     </div>
 
-    <div id="modal" class="modal">
+    <form id="modal" class="modal" method="post">
         <div class="modal_content">
             <div class="modal_header">
                 <h2>テスト回を編集</h2>
@@ -34,24 +34,25 @@
             </div>
             <div class="modal_body">
                 <input type="text" name="modal_name" id="modal_name">
-                <button class="edit-btn button" onclick="location.href='/edit_test/{{test[0]}}'">編集完了</button>
+                <button class="edit-btn button">編集完了</button>
             </div>
         </div>
-    </div>
+    </form>
 
     <script>
-        const btn_open = document.getElementById("modal_open");
-        const btn_close = document.querySelector(".modal_close");
+
         const modal = document.getElementById("modal")
-        
 
-        btn_open.addEventListener("click", () => {
+        const edit_test = (id, name) => {
             modal.style.display = "block";
-        });
+            document.getElementById("modal_name").value = name;
+            modal.setAttribute("action", "/edit_test/" + id);
 
-        btn_close.addEventListener("click", () => {
+        };
+
+        const closeModal = () => {
             modal.style.display = "none";
-        });
+        };
 
         document.addEventListener("click", (e) => {
             if (e.target == modal){

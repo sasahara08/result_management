@@ -121,7 +121,7 @@ input[type="text"] {
     font: 15px sans-serif;
     width: 30%;
     padding: 0.3em;
-    color: #aaaaaa;
+    color: #000000;
     border: 1px solid #1b2538;
     border-radius: 4px;
 }

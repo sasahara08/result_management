@@ -59,14 +59,14 @@ def indexAccess():
     
     cursor.execute('''
     create table IF NOT exists student (
-    `student_id` integer not null Primary key,
+    `student_id` integer not null Primary key autoincrement,
     `name` text not null
     );
     ''')
     
     cursor.execute('''
     create table IF NOT exists test_number (
-    `test_id` integer not null Primary key,
+    `test_id` integer not null Primary key autoincrement,
     `name` text not null
     );
     ''')
@@ -106,11 +106,11 @@ def create_test_number():
     tests = cursor.fetchall() 
     connection.close()
 
-    return render_template('stest_number.html', tests = tests)
+    return render_template('test_number_edit.html', tests = tests)
 
 
 # テストの回追加
-@app.route("/add_test")
+@app.route("/add_test", methods=["POST"])
 def add_test_number():
     test = request.form.get('test_name')
 
@@ -124,18 +124,32 @@ def add_test_number():
     return redirect('/create_test')
 
 # テストの回編集
-@app.route("/edit_test/<id>")
+@app.route("/edit_test/<id>", methods=["POST"])
 def edit_test_number(id):
-    test = request.form.get('test_name')
+    test = request.form.get('modal_name')
 
     connection = sqlite3.connect('result.db')
     cursor = connection.cursor()
     cursor.execute('''
-    insert into test_number (name) values (?)''',(test,))
+    update test_number set name = ? where test_id = ?''',(test, id,))
     connection.commit()
     connection.close()
 
     return redirect('/create_test')
+
+# テストの回削除
+@app.route("/delete_test/<id>")
+def delete_test_number(id):
+
+    connection = sqlite3.connect('result.db')
+    cursor = connection.cursor()
+    cursor.execute('''
+    delete from test_number where test_id = (?)''',(id,))
+    connection.commit()
+    connection.close()
+
+    return redirect('/create_test')
+
 
 # 過去の過去のテスト一覧を表示
 @app.route("/select_test/<id>")
