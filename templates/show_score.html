@@ -13,39 +13,42 @@
 <body>
     <header>
         <div class="title_line">
-            <h1>
-                成績管理ツール
-            </h1>
-            <div class="name_label">
-                <h2>生徒名：</h2>
-                <h2>{{student_name[1]}}</h2>
-            </div>
+            <a class="title" href="/">
+                <h1>
+                    成績管理ツール
+                </h1>
+            </a>
         </div>
     </header>
 
     <main>
+        <div class="name_label">
+            <h3>生徒名：</h3>
+            <h3>{{student_name[1]}}</h3>
+        </div>
+        <h2>全科目平均点</h2>
         <div class="avg_score">
             <canvas id="myChart"></canvas> <!-- チャート、jsの処理はhtmlのタグ下に記載 -->
             <div class="avg_socore_list">
                 <div class="curriculum">
                     <span>HTML:</span>
-                    <span>{{avg_score[1]}}</span>
+                    <span>{{avg_score[1]}}&emsp;点</span>
                 </div>
                 <div class="curriculum">
                     <span>CSS:</span>
-                    <span>{{avg_score[2]}}</span>
+                    <span>{{avg_score[2]}}&emsp;点</span>
                 </div>
                 <div class="curriculum">
                     <span>javascript:</span>
-                    <span>{{avg_score[3]}}</span>
+                    <span>{{avg_score[3]}}&emsp;点</span>
                 </div>
                 <div class="curriculum">
                     <span>Python:</span>
-                    <span>{{avg_score[4]}}</span>
+                    <span>{{avg_score[4]}}&emsp;点</span>
                 </div>
                 <div class="curriculum">
                     <span>Java:</span>
-                    <span>{{avg_score[5]}}</span>
+                    <span>{{avg_score[5]}}&emsp;点</span>
                 </div>
 
             </div>
@@ -53,27 +56,27 @@
 
         <div class="test_scores">
             {% for score in tests_score %}
-            <h3>{{score[0]}}</h3>
+            <h2>{{score[0]}}</h2>
             <div class="score_list">
                 <div class="curriculum">
                     <span class="curriculum_item">HTML:</span>
-                    <span>{{score[2]}}</span>
+                    <span class="curriculum_score">{{score[2]}}&emsp;点</span>
                 </div>
                 <div class="curriculum">
                     <span class="curriculum_item">CSS:</span>
-                    <span>{{score[3]}}</span>
+                    <span class="curriculum_score">{{score[3]}}&emsp;点</span>
                 </div>
                 <div class="curriculum">
                     <span class="curriculum_item">javascript:</span>
-                    <span>{{score[4]}}</span>
+                    <span class="curriculum_score">{{score[4]}}&emsp;点</span>
                 </div>
                 <div class="curriculum">
-                    <span>Python:</span>
-                    <span>{{score[5]}}</span>
+                    <span class="curriculum_item">Python:</span>
+                    <span class="curriculum_score">{{score[5]}}&emsp;点</span>
                 </div>
                 <div class="curriculum">
                     <span class="curriculum_item">Java:</span>
-                    <span>{{score[6]}}</span>
+                    <span class="curriculum_score">{{score[6]}}&emsp;点</span>
                 </div>
             </div>
             {% endfor %}
@@ -102,7 +105,7 @@
             labels: ["HTML", "CSS", "Js", "Python", "Java"],
             //データセット
             datasets: [{
-                label: "〇〇分析",
+                label: "全テスト平均点",
                 //背景色
                 backgroundColor: "rgba(51,255,51,0.5)",
                 //枠線の色

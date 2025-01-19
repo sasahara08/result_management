@@ -87,7 +87,7 @@ def show_list(id):
     cursor.execute('select * from student where student_id = ?',(id,))
     student_name = cursor.fetchone()  #生徒名を取得
 
-    cursor.execute('select student_id, AVG(html_score), AVG(css_score), AVG(js_score), AVG(python_score), AVG(java_score) from score group by (?)',(id,))
+    cursor.execute('select student_id, round(AVG(html_score), 1), round(AVG(css_score), 1), round(AVG(js_score), 1), round(AVG(python_score), 1), round(AVG(java_score), 1) from score where student_id = ? group by student_id',(id,))
     avg_score = cursor.fetchone()  #選択した生徒の全教科平均点を取得
     # print(avg_score)
 
@@ -173,9 +173,10 @@ def score_register(id):
     cursor = connection.cursor()
     cursor.execute('select * from student where student_id = ?',(id,))
     student_name = cursor.fetchone()  #生徒名を取得
+    cursor.execute('select * from test_number')
+    tests = cursor.fetchall()
     connection.close()
 
-    tests = get_test_number(id) #idの値がidの生徒のテスト回一覧を取得
     id = id
     
     return render_template('score_regist.html', student_name = student_name, tests = tests, id = id)
@@ -228,6 +229,27 @@ def score_editer(student_id, test_id):
     student_name = cursor.fetchone()  #生徒名を取得
     connection.close()
     
-    return render_template('score_editer.html', select_test = selectTest, test_name = test_name, student_name = student_name, id = student_id)
+    return render_template('score_editer.html', select_test = selectTest, test_name = test_name, student_name = student_name, s_id = student_id, t_id = test_id)
+
+# 成績編集確定ボタン
+@app.route("/edit_complete/<id>/<test_id>", methods=['POST', 'GET'])
+def edit_score(id, test_id):
+    student_id = id
+    test_id = test_id
+    html = int(request.form.get('html_score'))
+    css = int(request.form.get('css_score'))
+    js = int(request.form.get('js_score'))
+    py = int(request.form.get('python_score'))
+    ja = int(request.form.get('java_score'))
+    
+    connection = sqlite3.connect('result.db')
+    cursor = connection.cursor()
+    cursor.execute('''
+    update score set html_score = ?, css_score = ?, js_score = ?, python_score = ?, java_score = ?
+    where student_id = ? and test_id = ?''',(html, css, js, py, ja, student_id, test_id))
+    connection.commit()
+    connection.close()
+    
+    return redirect('/')
 
 app.run()
