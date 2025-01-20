@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>成績管理ツール</title>
     <link rel="stylesheet" type="text/css" href="../static/Style_ozawa.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Zen+Kaku+Gothic+New&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -27,6 +32,7 @@
             <div class=student_name>
                 {{student_lists[1]}}
             </div>
+            
             <div class="listbtn_01">
                 <button type="button" onclick="location.href='/show/{{ student_lists[0] }}'">成績閲覧</button>
                 <button type="button" onclick="location.href='/select_test/{{ student_lists[0] }}'">成績編集</button>

@@ -1,3 +1,7 @@
+* {
+    font-family: "Noto Sans JP", serif;
+}
+
 header {
 	width: 60%;
 	margin: auto;
@@ -52,6 +56,7 @@ ul.cp_list {
 
 ul.cp_list li {
 	display: flex;
+	margin: 30px 0px;
 	padding: 5px 10px 5px 10px;
 	border-bottom: 1px dashed #27C654;
 }
@@ -80,4 +85,18 @@ ul.cp_list li:last-of-type {
 .add_student{
 	width: 60%;
 	margin: auto;
+}
+
+button {
+    padding: 15px 20px;
+    border: none;
+    background-color: #27C654;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #48db72;
 }

@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/edit.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100..900&family=Noto+Sans+JP:wght@100..900&family=Zen+Kaku+Gothic+New&display=swap"
+        rel="stylesheet">
     <title>成績入力</title>
 </head>
 
@@ -23,7 +28,7 @@
         <h2>
             成績入力
         </h2>
-        
+
         <h3>生徒名：{{student_name[1]}}</h3>
         <form action="/create_score/{{id}}" method="post">
             <div>
@@ -38,31 +43,36 @@
 
             <div class="form_box">
                 <label class="form-label edit_font" for="html_score">HTML : </label>
-                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required name="html_score" id="html_score">
+                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required
+                    name="html_score" id="html_score">
                 <span>点</span>
             </div>
 
             <div class="form_box">
                 <label class="form-label edit_font" for="css_score">CSS : </label><br>
-                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required name="css_score" id="css_score">
+                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required
+                    name="css_score" id="css_score">
                 <span>点</span>
             </div>
 
             <div class="form_box">
                 <label class="form-label edit_font" for="js_score">javascript : </label><br>
-                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required name="js_score" id="js_score">
+                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required
+                    name="js_score" id="js_score">
                 <span>点</span>
             </div>
 
             <div class="form_box">
-                <label class="form -label edit_font"for="python_score">Python : </label><br>
-                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required name="python_score" id="python_score">
+                <label class="form -label edit_font" for="python_score">Python : </label><br>
+                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required
+                    name="python_score" id="python_score">
                 <span>点</span>
             </div>
 
             <div class="form_box">
                 <label class="form-label edit_font" for="java_score">Java : </label><br>
-                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required name="java_score" id="java_score">
+                <input class="form-control label_width" type="number" maxlength="3" pattern="^[0-9]+$" required
+                    name="java_score" id="java_score">
                 <span>点</span>
             </div>
 

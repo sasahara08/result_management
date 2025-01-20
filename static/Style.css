@@ -1,3 +1,8 @@
+* {
+  font-family: "Noto Sans JP", serif;
+}
+
+
 /* Home ボタンデザイン */
 a.btn_02 {
 	display: block;

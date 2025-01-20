@@ -1,3 +1,6 @@
+* {
+    font-family: "Noto Sans JP", serif;
+}
 
 .modal {
     display: none;
@@ -95,7 +98,7 @@ input[type="text"] {
 }
 
 .button:hover {
-    background-color: #145a91;
+    background-color: #48db72;
 }
 
 
