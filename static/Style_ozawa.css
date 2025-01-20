@@ -11,7 +11,7 @@ header {
 }
 
 
-/* menu用 ボタンデザイン */
+/* バナーボタンのデザイン */
 a.btn_01 {
 	display: block;
 	text-align: center;
@@ -32,14 +32,14 @@ a.btn_01:hover {
 }
 
 
-/* menu用 ボタン位置 */
+/* バナーボタンの位置 */
 .menu_btn {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-/* Home 学生名リスト */
+/* Index 学生名リスト */
 ul.cp_list {
 	position: relative;
 	width: 60%;
@@ -56,7 +56,7 @@ ul.cp_list li {
 	border-bottom: 1px dashed #27C654;
 }
 
-/* 一覧用 ボタン位置 */
+/* リスト用 ボタン位置 */
 .listbtn_01 {
 	flex: 1;
 	margin-left: auto;
@@ -74,4 +74,10 @@ ul.cp_list li:last-of-type {
 
 .student_name {
 	width: 200px;
+}
+
+/* 生徒追加登録 */
+.add_student{
+	width: 60%;
+	margin: auto;
 }
