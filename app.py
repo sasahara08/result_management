@@ -77,6 +77,33 @@ def indexAccess():
 
     return render_template('index.html', student_list = student_list)
 
+#Indexページからテスト実施回ページへ遷移
+@app.route('/test_number_edit')
+def test_number_edit():
+    return render_template('test_number_edit.html')
+
+#Indexページから生徒追加ページへ遷移
+@app.route('/student_new')
+def student_new():
+    return render_template('student_new.html')
+
+#生徒情報、追加入力
+@app.route("/student_new", methods=['POST', 'GET'])
+def student_edit(id):
+    student_id = int(request.form.get('student_id'))
+    name = int(request.form.get('name'))
+    
+    connection = sqlite3.connect('result.db')
+    cursor = connection.cursor()
+    cursor.execute('''
+    insert into score (student_id, name) values
+    (?, ?)''',(student_id, name))
+    connection.commit()
+    connection.close()
+    
+    return redirect('/index')
+
+
 # 生徒の成績を確認(レーダーチャートページへ遷移)
 @app.route("/show/<id>")
 def show_list(id):
