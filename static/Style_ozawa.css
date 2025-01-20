@@ -39,19 +39,6 @@ a.btn_01:hover {
 	justify-content: center;
 }
 
-/*一覧用 名前位置*/
-
-
-
-
-.listbtn_02 {
-	position: relative;
-	/* 今の位置を基準 */
-	left: 500px;
-	/* 右から10px */
-}
-
-
 /* Home 学生名リスト */
 ul.cp_list {
 	position: relative;
@@ -73,6 +60,7 @@ ul.cp_list li {
 .listbtn_01 {
 	flex: 1;
 	margin-left: auto;
+	text-align: right;
 }
 
 ul.cp_list li::before {
