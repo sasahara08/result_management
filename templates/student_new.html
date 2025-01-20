@@ -13,16 +13,12 @@
     <br>
 
     <main>
-        <form action="/student_new/{{id}}" method="post">
-            <div class="form_box">
-                <label class="form-label edit_font" for="student_id">学籍番号： </label>
-                <input class="form-control label_width" type="number" required value={{select_student[0]}} name="student_id" id="student_id">
-            </div>
+        <form action="/add_student" method="post">
             <div class="form_box">
                 <label class="form-label edit_font" for="student_name">氏名： </label>
-                <input class="form-control label_width" required value={{select_student[1]}} name="name" id="name">
+                <input class="form-control label_width" required name="name" id="name">
             </div>
-
+            <br>
             <input type="submit" value="登録完了">
 
         </form>
