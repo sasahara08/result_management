@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>生徒情報 新規登録</title>
+    <title>生徒情報 追加登録</title>
         <link rel="stylesheet" type="text/css" href="../static/Style_ozawa.css">
 </head>
 <body>
     <header>
-        <div class="title">生徒情報 新規登録</div>
+        <div class="title">生徒情報 追加登録</div>
     </header>
     <br>
 
-    <main>
+    <div class="add_student">
         <form action="/add_student" method="post">
             <div class="form_box">
                 <label class="form-label edit_font" for="student_name">氏名： </label>
                 <input class="form-control label_width" required name="name" id="name">
             </div>
             <br>
-            <input type="submit" value="登録完了">
-
+            <input type="submit" value="登録">
         </form>
-    </main>
+            <br>
+    </div>
+
     
 </body>
 </html>
