@@ -12,18 +12,19 @@
     </header>
 
     <div class="menu_btn">
-        <a href="{{url_for('test_number_edit')}}" class="btn_01">試験実施回</a>
+        <a href="/create_test" class="btn_01">試験実施回</a>
         <a href="{{url_for('student_new')}}" class="btn_01">生徒追加登録</a>
     </div>
 
     <br>
     <br>
-    
 
     <ul class="cp_list">
             {% for student_lists in student_list %}
             <li>
-            {{student_lists[1]}}
+            <div class=student_name>
+                {{student_lists[1]}}
+            </div>
             <div class="listbtn_01">
                 <button type="button" onclick="location.href='/show/{{ student_lists[0] }}'">成績閲覧</button>
                 <button type="button" onclick="location.href='/select_test/{{ student_lists[0] }}'">成績編集</button>  

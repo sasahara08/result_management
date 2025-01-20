@@ -1,5 +1,7 @@
-/* タイトル箇所 */
+
 header {
+  width: 60%;
+  margin: auto;
   padding: 1rem 2rem;
   background-color: rgba(83,198,115,0.3);
 }
@@ -32,29 +34,36 @@ a.btn_01:hover {
 
 /* menu用 ボタン位置 */
 .menu_btn {  
-	float: right;
-    width: 30%;
-	  display: flex;
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+}
+
+/*一覧用 名前位置*/
+.student_name{
+	width: 30%;
+	margin-right: 10%
 }
 
 /* 一覧用 ボタン位置 */
 .listbtn_01 {
-  margin-left: 450px;
+  margin-left: 60%;
 }
 
 .listbtn_02{
-  margin-left: 500px;
+  margin-left: 65%;
 }
 
 
 /* Home 学生名リスト */
 ul.cp_list {
 	position: relative;
+	width: 60%;
 	padding: 5px;
-  margin: 15px;
+  	margin: auto;
 	border: solid 1px #27C654;
 	list-style-type: none;
-	width: 65%;
+	
   }
 
   ul.cp_list li {
@@ -72,5 +81,5 @@ ul.cp_list {
 	border-bottom: none;
   }
 
-  /* from_box */
+ 
   
