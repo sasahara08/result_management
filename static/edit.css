@@ -1,6 +1,11 @@
-main {
+main,
+header {
     width: 60%;
     margin: auto;
+}
+
+header {
+    margin-bottom: 50px;
 }
 
 form {
