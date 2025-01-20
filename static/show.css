@@ -3,11 +3,6 @@ body {
     margin: auto;
 }
 
-main {
-    width: 80%;
-    margin: auto;
-}
-
 header {
     padding: 1rem 2rem;
     background-color: rgba(83, 198, 115, 0.3);
