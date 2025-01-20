@@ -1,14 +1,13 @@
-
 header {
-  width: 60%;
-  margin: auto;
-  padding: 1rem 2rem;
-  background-color: rgba(83,198,115,0.3);
+	width: 60%;
+	margin: auto;
+	padding: 1rem 2rem;
+	background-color: rgba(83, 198, 115, 0.3);
 }
 
 .title {
-  font-size: xx-large;
-  color:black;
+	font-size: xx-large;
+	color: black;
 }
 
 
@@ -26,6 +25,7 @@ a.btn_01 {
 	color: #fff;
 	transition: 0.5s;
 }
+
 a.btn_01:hover {
 	color: #27C654;
 	background: #fff;
@@ -33,25 +33,22 @@ a.btn_01:hover {
 
 
 /* menu用 ボタン位置 */
-.menu_btn {  
+.menu_btn {
 	display: flex;
-  	align-items: center;
-  	justify-content: center;
+	align-items: center;
+	justify-content: center;
 }
 
 /*一覧用 名前位置*/
-.student_name{
-	width: 30%;
-	margin-right: 10%
-}
 
-/* 一覧用 ボタン位置 */
-.listbtn_01 {
-  margin-left: 60%;
-}
 
-.listbtn_02{
-  margin-left: 65%;
+
+
+.listbtn_02 {
+	position: relative;
+	/* 今の位置を基準 */
+	left: 500px;
+	/* 右から10px */
 }
 
 
@@ -60,26 +57,33 @@ ul.cp_list {
 	position: relative;
 	width: 60%;
 	padding: 5px;
-  	margin: auto;
+	margin: auto;
 	border: solid 1px #27C654;
 	list-style-type: none;
-	
-  }
 
-  ul.cp_list li {
+}
+
+ul.cp_list li {
 	display: flex;
 	padding: 5px 10px 5px 10px;
 	border-bottom: 1px dashed #27C654;
-  }
-  
-  ul.cp_list li::before {
+}
+
+/* 一覧用 ボタン位置 */
+.listbtn_01 {
+	flex: 1;
+	margin-left: auto;
+}
+
+ul.cp_list li::before {
 	position: absolute;
-	left : 5px;
-  }
+	left: 5px;
+}
 
-  ul.cp_list li:last-of-type {
+ul.cp_list li:last-of-type {
 	border-bottom: none;
-  }
+}
 
- 
-  
+.student_name {
+	width: 200px;
+}
